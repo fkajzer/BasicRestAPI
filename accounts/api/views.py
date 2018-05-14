@@ -5,10 +5,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 
+from core.api import permissions as core_permissions
+
 from .serializers import LoginSerializer
-
-# from core.api import permissions as core_permissions
-
 
 sensitive_post_parameters_m = method_decorator(
     sensitive_post_parameters(
@@ -23,7 +22,7 @@ class LoginView(ObtainAuthToken):
     Expects email and password and returns token and uuid.
     """
     serializer_class = LoginSerializer
-    # permission_classes = (core_permissions.IsSuperuser,)
+    permission_classes = (core_permissions.HasVerifiedEmailAddress,)
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(

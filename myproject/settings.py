@@ -149,6 +149,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
+        'core.api.permissions.HasVerifiedEmailAddress',
         'rest_framework.permissions.IsAuthenticated',
     )
 }
@@ -167,7 +168,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-# ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 
 
 # django-rest-auth configuration
