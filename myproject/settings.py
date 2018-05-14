@@ -41,6 +41,14 @@ INSTALLED_APPS = [
     'authtools',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
 
     'accounts',
     'core',
@@ -148,3 +156,26 @@ REST_FRAMEWORK = {
 # django-authtools configuration
 
 AUTH_USER_MODEL = 'accounts.User'
+
+
+# django-allauth configuration
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+# ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
+
+
+# django-rest-auth configuration
+
+SITE_ID = 1  # Don't forget to configure site in the admin!
+REST_SESSION_LOGIN = False
+OLD_PASSWORD_FIELD_ENABLED = True
+
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "accounts.api.serializers.UserDetailSerializer",
+}
