@@ -10,10 +10,9 @@ class IsSuperuser(permissions.BasePermission):
     message = "This account is not a superuser."
 
     def has_permission(self, request, view):
-        # if "email" in request.data:
-        #     user = User.objects.get(email=request.data["email"])
-        #     return user.is_superuser
-        # return False
+        if "email" in request.data:
+            user = User.objects.get(email=request.data["email"])
+            return user.is_superuser
         return False
 
 
